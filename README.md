@@ -134,7 +134,6 @@ Use Windows Task Scheduler:
 ## How It Works
 The script uses the Telegram Bot API long polling to receive commands and executes system-level actions on the PC. It includes protections for:
 - Handling intermittent internet disconnections
-- Avoiding duplicate processing of messages
 - Restricting responses to the configured Telegram user only
 
 ---
@@ -157,10 +156,3 @@ This project is intended for personal and educational use. If you want to contri
 
 ## License
 This project is for educational and personal use. Use responsibly.
-
----
-If you’d like, I can also:
-- Add badges (build/status/security) or a short GIF demo,
-- Provide a minimal example of `bot.py` showing how BOT_TOKEN/CHAT_ID are used,
-- Or create a ready-made Task Scheduler XML for import.
-Which would you prefer next?
