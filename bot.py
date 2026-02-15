@@ -3,6 +3,7 @@ import time
 import os
 import socket
 import pyautogui
+import subprocess
 
 BOT_TOKEN = "YOUR_BOT_TOKEN"
 CHAT_ID = "YOUR_CHAT_ID"
@@ -95,7 +96,6 @@ def get_updates():
         time.sleep(5)
         return []
 
-
 # ------------------ COMMAND HANDLER ------------------
 def handle_command(command):
     command = command.lower()
@@ -106,7 +106,8 @@ def handle_command(command):
 
     elif command == "/shutdown":
         send_message("🛑 Shutting down PC...")
-        os.system("shutdown /s /t 5")
+        subprocess.run(["shutdown", "/s", "/t", "0"])
+        # os.system("shutdown /s /t 5")
 
     elif command == "/restart":
         send_message("🔄 Restarting PC...")
@@ -114,7 +115,8 @@ def handle_command(command):
 
     elif command == "/lock":
         send_message("🔒 Locking PC...")
-        os.system("rundll32.exe user32.dll,LockWorkStation")
+        subprocess.call("rundll32.exe user32.dll,LockWorkStation")
+        # os.system("rundll32.exe user32.dll,LockWorkStation")
 
     elif command == "/ip":
         local_ip = get_local_ip()
@@ -136,6 +138,8 @@ def handle_command(command):
             img = pyautogui.screenshot()
             img.save(path)
             send_photo(path)
+        except Exception as e:
+            send_message("Screenshot failed", e)
         finally:
             if os.path.exists(path):
                 os.remove(path)
